@@ -1,0 +1,42 @@
+.main{
+    width: 40%;
+    margin: auto;
+border: 1px solid gray;
+padding: 20px;
+}
+.main_div{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+}
+h2{
+    text-align: center;
+}
+
+.div{
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 20px;
+}
+
+.show_data{
+    width: 80%;
+    margin:100px auto;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: grid;
+   grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 20px;
+    padding: 20px;
+
+}
+
+.pr_div{
+    width: 400px;
+    border-radius: 10px;
+    padding: 10px;
+    line-height: 30px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
