@@ -47,7 +47,6 @@ const preValue = {
      ps: "",
 };
 
-
 const inputFild1 = [
      {
           placeholder: "DD/MM/YYYY HH:MM",
@@ -80,6 +79,7 @@ const inputFild2 = [
           title: "घटना – स्थल",
           id: "id4",
           name: "homeNo",
+          required: true,
      },
      {
           placeholder: "English Characters Only",
@@ -186,7 +186,14 @@ const Form = () => {
                return policeStation;
           }
      };
-     console.log(value);
+     console.log([...inputFild1, ...inputFild2, ...inputFild3, ...inputFild4]);
+
+     const getData = (item, head) => {
+          if (head.type === "date") {
+               return moment(item?.[head.name]).format("MM/DD/YYYY hh:mm A");
+          }
+          return item?.[head.name];
+     };
 
      return (
           <>
@@ -246,16 +253,15 @@ const Form = () => {
 
                          <div className="w-50 border m-2 p-2">
                               <h5 className="text-primary">बाहरी सीमा विवरण</h5>
-
-                              {inputFild4?.map((item) => (
-                                   <InputFild
-                                        fild={item}
-                                        funChange={handelChange}
-                                        val={data}
-                                        options={getOptions(item)}
-                                   />
-                              ))}
                          </div>
+                         {inputFild4?.map((item) => (
+                              <InputFild
+                                   fild={item}
+                                   funChange={handelChange}
+                                   val={data}
+                                   options={getOptions(item)}
+                              />
+                         ))}
                     </div>
 
                     <div className="card flex justify-content-center">
@@ -266,23 +272,26 @@ const Form = () => {
                {/* --------------------------------show data contaner------------------------------------------- */}
                <div>
                     <div>
-                         <div className="container border my-3">
+                         <div className="container border my-3 p-2">
                               <div className="row">
-                                   {inputFild1.map((item) => {
+                                   {[
+                                        ...inputFild1,
+                                        ...inputFild2,
+                                        ...inputFild3,
+                                        ...inputFild4,
+                                   ].map((item) => {
                                         return (
                                              <div className="col-sm">
                                                   {item.title}
                                              </div>
-
                                         );
                                    })}
 
-                                   {inputFild2.map((item) => {
+                                   {/* {inputFild2.map((item) => {
                                         return (
                                              <div className="col-sm">
                                                   {item.title}
                                              </div>
-
                                         );
                                    })}
 
@@ -291,7 +300,6 @@ const Form = () => {
                                              <div className="col-sm">
                                                   {item.title}
                                              </div>
-
                                         );
                                    })}
 
@@ -301,12 +309,29 @@ const Form = () => {
                                                   {item.title}
                                              </div>
                                         );
-                                   })}
-
+                                   })} */}
                               </div>
                          </div>
                     </div>
                     {value.map((item) => {
+                         return (
+                              <div className="row">
+                                   {[
+                                        ...inputFild1,
+                                        ...inputFild2,
+                                        ...inputFild3,
+                                        ...inputFild4,
+                                   ].map((head) => {
+                                        return (
+                                             <div className="col-sm">
+                                                  {getData(item, head)}
+                                             </div>
+                                        );
+                                   })}
+                              </div>
+                         );
+                    })}
+                    {/* {value.map((item) => {
                          return (
                               <div key={item.id}>
                                    <div className="container border my-3">
@@ -366,7 +391,7 @@ const Form = () => {
                                    </div>
                               </div>
                          );
-                    })}
+                    })} */}
                </div>
           </>
      );
