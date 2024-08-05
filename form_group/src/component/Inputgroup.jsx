@@ -96,8 +96,8 @@ const Inputgroup = ({ fild, funHandel, valu, cities=[] }) => {
                                              name={fild.name}
                                              value={option.value}
                                              onChange={funHandel}
-                                             checked={valu[fild.name]?.includes(
-                                                  option.value
+                                             checked={valu?.[fild.name]?.some(
+                                                  (item) => item === option.name
                                              )}
                                         />
                                         <label
